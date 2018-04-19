@@ -1,0 +1,194 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://java.sun.com/jsf/composite"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <!-- INTERFACE -->
+    <cc:interface>
+        <cc:attribute name="productInfo" required="true"/>
+        <cc:attribute name="isMyProfile" required="true"/>
+        <cc:attribute name="prependedId" required="true" />
+        <cc:attribute name="removeAfterUnfollow" required="false" default="false" />
+        <cc:attribute name="wrapperId" required="false" />
+    </cc:interface>
+
+    <cc:implementation>
+        <p:outputPanel id="ProductItem" styleClass="ProductItem" style="height: 400px; width: 190px;">
+            <p:outputPanel styleClass="ProductItem" style="height: 399px; width: 189px;">
+                <p:commandLink action="#{dCustomerProductDetailManagedBean.loadProduct(cc.attrs.productInfo)}">
+                    <div align="center" dir="rtl" >
+                        <table align="right" dir="rtl" width="100%" style="height: 130px;">
+                            <tr align="center">
+                                <td colspan="2" align="center" valign="middle" width="170px" height="130px">
+                                    <div >
+                                        <p:commandLink action="#{dCustomerProductDetailManagedBean.loadProduct(cc.attrs.productInfo)}">
+                                            <div class="center-cropped">
+                                                <p:graphicImage value="#{cc.attrs.productInfo.firstImage.largeImage}" 
+                                                                style="max-width: 100%;max-height: 100%;vertical-align: middle!important" />
+                                            </div>
+                                        </p:commandLink>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="2" style="height: 40px" valign="top">
+                                    <div style="height: 40px; overflow: hidden; text-overflow: ellipsis;">
+                                        <p:outputLabel value="#{cc.attrs.productInfo.tProductInfo.productName}" styleClass="ui-label-bold" />
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" align="right">
+                                    <table dir="rtl">
+                                        <tr>
+                                            <td>
+                                                <p:rating value="#{cc.attrs.productInfo.tProductInfo.avgRank}" readonly="true"  />
+                                            </td>
+                                            <td>
+                                                <div class="fa fa-sort-desc" />
+                                                <p:outputLabel value="32" styleClass="ui-label"/>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <table dir="rtl">
+                                        <tr>
+                                            <td width="100">
+                                                <h:outputLink id="labelPerfectCountLabel" value="#" style="text-decoration: none;">
+                                                    <div class="fa fa-heart" style="font-size: medium;color: #2891a1;"/>
+                                                    <p:outputLabel id="labelPerfectCount" value="#{cc.attrs.productInfo.perfectCount}" styleClass="numberLabel"/>
+                                                </h:outputLink>
+                                                <p:tooltip for="labelPerfectCountLabel" value="علاقه مندان"  style="width: 60px !important;"/>
+                                            </td>
+                                            <td width="100">
+                                                <h:outputLink id="labelFollowerCountLabel" value="#" style="text-decoration: none;">
+                                                    <div class="fa fa-user" style="font-size: medium;color: #2891a1;"/>
+                                                    <p:outputLabel id="labelFollowerCount" value="#{cc.attrs.productInfo.followerCount}" styleClass="numberLabel"/>
+                                                </h:outputLink>
+                                                <p:tooltip for="labelFollowerCountLabel" value="دنبال کنندگان" style="width: 60px !important;"/>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" align="right">
+                                    <table align="right" cellspacing="0" >
+                                        <tr>
+                                            <td>
+                                                <p:outputLabel value="#{root_msg.website_root_pages_newProduct_sale}" styleClass="ui-label"/>
+                                            </td>
+                                            <td>
+                                                <p:outputLabel value="%#{cc.attrs.productInfo.percentSale}" styleClass="ui-label"/>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p:outputLabel value="#{root_msg.website_root_pages_profile_products_price}" styleClass="ui-label"/>
+                                </td>
+                                <td>
+                                    <p:outputLabel value="#{cc.attrs.productInfo.originalPrice}" styleClass="ui-label">
+                                        <f:convertNumber pattern="###,###,###"  />
+                                    </p:outputLabel>
+                                    <p:outputLabel value="تومان" styleClass="ui-label"/>
+                                </td>
+                            </tr>
+
+                            <tr class="priceLabel">
+                                <td width="65px">
+                                    <p:outputLabel value="#{root_msg.website_root_pages_newProduct_finalPrice}" styleClass="ui-label" style="font-size: 10px!important;"/>
+                                </td>
+                                <td>
+                                    <p:outputLabel value="#{cc.attrs.productInfo.finalPrice}" styleClass="ui-label" style="font-size: 14px!important;">
+                                        <f:convertNumber pattern="###,###,###"  />
+                                    </p:outputLabel>
+                                    <p:outputLabel value="تومان" styleClass="ui-label"/>
+                                </td>
+                            </tr>
+
+                        </table>
+                    </div>
+                </p:commandLink>
+                <div align="center" 
+                     class="productInfoProfile_AddToBasket_Wrapper">
+                    <div align="center" style="height: 25px; direction: ltr;">                           
+                        <p:commandLink action="#{dCustomerProductDetailManagedBean.bindAttributeToOneMenu(cc.attrs.productInfo)}"  
+                                       rendered="#{cc.attrs.productInfo.gettProductInfo().quantityAvailableProducts ne 0}"
+                                       oncomplete="PF('widgetProductDetails').show();"  
+                                       style="text-decoration: none!important;" 
+                                       styleClass="productInfoProfile_AddToBasket"
+                                       update="#{cc.attrs.prependedId}:ProductItem">
+                            <span class="productInfoProfile_AddToBasket_Icon_Font_Size fa fa-shopping-cart" />
+                            <span class="productInfoProfile_AddToBasket_Text">
+                                افزودن به سبد کالا
+                            </span>                            
+                        </p:commandLink>
+                        <p:outputPanel styleClass="productInfoProfile_AddToBasket_DoesNot_Exist"
+                                       rendered="#{cc.attrs.productInfo.gettProductInfo().quantityAvailableProducts eq 0}">
+                            <span class="productInfoProfile_Icon_Font_Size fa fa-times" />
+                            <span class="productInfoProfile_AddToBasket_Text">
+                                کالا موجود نیست
+                            </span>
+                        </p:outputPanel>
+                        <p:commandLink styleClass="productInfoProfile_Icon_Font_Size #{cc.attrs.productInfo.isPerfeted ? 'fa fa-heart' :'fa fa-heart-o'}"
+                                       id="productDetailPerfect" 
+                                       action="#{productCommonManagedBean.perfectAction(cc.attrs.productInfo)}" 
+                                       update="labelPerfectCount productDetailPerfect" />                        
+                        <p:commandLink styleClass="kirekhar productInfoProfile_Icon_Font_Size fa fa-bell-o" update="labelPerfectCount" />
+                    </div>                                
+                    <div align="center" style="direction: ltr;width: 175px">
+                        <p:commandLink action="#{productCommonManagedBean.followAction(cc.attrs.productInfo)}" 
+                                       rendered="#{not cc.attrs.removeAfterUnfollow}"
+                                       update="@this labelFollowerCount"
+                                       styleClass="productInfoProfile_Follow_Btn">
+                            <span class="productInfoProfile_Icon_Font_Size #{cc.attrs.productInfo.isFollower eq true ? 'fa fa-check' : 'fa fa-plus'}" />
+                            <span class="productInfoProfile_Follow_Btn_text ui-label">
+                                #{cc.attrs.productInfo.isFollower eq true ? 'دنبال شده' : 'دنبال کردن'}
+                            </span>
+                        </p:commandLink>
+                        <script type="text/javascript">
+//                            function onhoverStyleChange(element){                              
+//                                var c = element.getAttribute("class");
+//                                c = c.replace("productInfoProfile_Follow_Btn", "productInfoProfile_Follow_Btn_Unfollow_hover");
+//                                element.setAttribute('class', c);
+//                            }
+//                            function onmouseOutStyleChange(element){
+//                                var c = element.getAttribute("class");
+//                                c = c.replace("productInfoProfile_Follow_Btn_Unfollow_hover", "productInfoProfile_Follow_Btn");
+//                                element.setAttribute('class', c);
+//                            }                            
+                        </script>
+                        <p:commandLink id="unfollowActionWithRemoveSupport" 
+                                       action="#{productCommonManagedBean.unfollowActionWithRemoveSupport(cc.attrs.productInfo)}" 
+                                       rendered="#{cc.attrs.removeAfterUnfollow}"
+                                       update="@this labelFollowerCount #{cc.attrs.wrapperId}"
+                                       styleClass="productInfoProfile_Follow_Btn">
+                            <span class="productInfoProfile_Icon_Font_Size fa fa-check" />
+                            <span class="productInfoProfile_Follow_Btn_text ui-label">
+                                دنبال شده
+                            </span>
+                        </p:commandLink>   
+                        <p:commandLink action="#{dCustomerProductDetailManagedBean.loadProduct(cc.attrs.productInfo)}"
+                                       styleClass="productInfoProfile_View_Btn ui-label" >                             
+                            <span class="productInfoProfile_View_Btn_text ui-label">
+                                مشاهده
+                            </span>                                        
+                        </p:commandLink>
+                    </div>                    
+                </div>
+            </p:outputPanel>
+        </p:outputPanel>
+    </cc:implementation>
+</html>

@@ -1,0 +1,598 @@
+
+body{
+    height: 870px !important;
+}
+@font-face {
+    font-family: byekan;
+    src: url(css/BYekan.ttf);
+}
+
+.footer{
+    border-top: 5px solid #6AA635;
+    position: fixed;
+    bottom: 0; 
+    width: 100%; 
+    background-color: #2B2D2A;
+    margin-left: 0;
+    left: 0px;
+    z-index: 10;
+}
+/*.ui-dialog-titlebar-icon .ui-dialog-titlebar-close .ui-corner-all{
+     background: red !important;
+}
+.ui-icon .ui-icon-closethick{
+    color: red !important;   
+}*/
+@media (min-width: 1200px){
+    .container {
+        width: 1170px;
+    }
+}
+@media (min-width: 992px){
+    .container {
+        width: 970px;
+    }
+}
+@media (min-width: 768px){
+    .container {
+        width: 970px;
+    }
+}
+.container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+.container1 {
+ width: 75%;
+  
+
+}
+
+h4{
+    font-family: byekan;
+    color: white;
+    opacity: 1;
+}
+h5{
+    font-family: byekan;
+
+}
+h6{
+    font-family: byekan;
+    color: white;
+}
+.ui-password-info{
+   direction: rtl;  
+}
+#fonthead{
+    display: inline;
+    position: relative;
+    top: -5px;
+    font-weight: 300;
+}
+.console{
+    display:inline;
+    color: white;
+    font-family: byekan;
+    font-weight: 100;
+    font-size:13px;
+    margin-right: 30px;
+    margin-bottom: 10px;
+}
+.console td{
+    padding-left: 10px;
+
+}
+.label1{
+    color: white; 
+    font-family: byekan;
+    font-weight: 100;
+    
+
+}
+.ui-widget-header .ui-icon {
+    background-image: url("./images/ui-icons_ffffff_256x240.png?ln=primefaces-aristo");
+    
+}
+
+
+
+.errors {
+    color: red;
+    font-size: 12px;
+    font-family: byekan;
+  
+}
+.termlink{
+    color: #98ff66 !important;
+   
+     text-decoration: none !important;
+    
+}
+.style4{
+    color: black !important;
+    
+}
+.style9{
+   color: black !important;  
+   font-weight: bold;
+    
+}
+
+
+.selectbt{
+    display:inline; 
+    border: none !important;
+    border-radius: 0px;
+    text-shadow: none;
+    box-shadow: none;
+}
+.ui-widget-header{
+    color:whitesmoke !important;
+   background: #6aa434;
+    border: none !important;
+    border-radius: 0px !important;
+    text-shadow: none !important;
+    box-shadow: none !important;
+    
+    
+}
+
+.dialog1{
+     position:fixed !important;
+    background-color:white !important; 
+    border: none !important; 
+    border-radius: 0px !important; 
+    text-shadow: none!important ; 
+    box-shadow: none !important; 
+    
+ 
+}
+.selectbt:hover{
+    background:#4a8602 ;  
+    box-shadow: none;
+}
+div.second {
+
+    filter: alpha(opacity=30);
+    background-color: rgba(0,0,0,0.5);
+    margin-top: 0%;
+    width:550px;
+    height:600px
+}
+
+.icon1{
+    display:inline; 
+
+}
+.icon2{
+    display:inline;  
+}
+
+.captcha{
+
+    margin-right: 2%;
+
+}
+.inline-area{
+    display:inline; 
+    font-family: byekan;
+    text-decoration: none;
+    color: whitesmoke ;
+
+}
+.logo{
+
+    margin-left: 7%;
+    margin-top: 2%;
+    margin-top: 1%;
+
+}
+#footerfont{
+    font-size:12px;
+    font-weight: 300; 
+    display:inline; 
+
+}
+
+#footerspan{
+
+    width: 150px;
+}
+
+.sociallink span{
+    color:#999999;
+    z-index: 12;
+    font-size: 15px;
+
+}
+@media screen and (min-width: 600px) {
+    #SignForm{
+        background-color: rgba(0,0,0,0.5);
+        width: 500px;
+    }
+    .dialog1{
+height:60% !important ;
+width:65% !important;
+ 
+}
+
+}
+@media screen and (max-width: 600px) {
+    body{
+        height: 1160px !important;
+    }
+    .container1 {
+ width: 100%;
+  
+
+}
+       .dialog1{
+height:60% !important;
+width:65% !important;
+ 
+} 
+    
+    .input1 {
+        width: 100% !important;
+        height: 20px;
+        border-radius: 0px;
+        box-shadow: none;
+    }
+
+
+    .logo{
+        margin-top: 0%;
+        margin-left: 45%;
+    }
+    #SignForm{
+        background-color: rgba(0,0,0,0.5);
+        width: 70%;
+    }
+    div.second {
+
+        filter: alpha(opacity=30);
+        background-color: rgba(0,0,0,0.5);
+        margin-top: 2%;
+        width:500px;
+        height:600px 
+    }
+    .errors {
+        color: red;
+        font-size: 12px;
+        font-family: byekan;
+    }
+    .site-info{
+        background-color: rgba(0,0,0,0.5);
+        position: relative;
+        width:300px !important;  
+
+        left: 20px;
+        bottom: 50px;
+        direction: rtl;
+    }    
+    .container1 {
+ width: 80%;
+  
+
+}
+} 
+@media only screen 
+and (max-device-width: 800px)
+and (-webkit-min-device-pixel-ratio: 2) {
+
+    /*AezA@Media*/
+    .remember {
+        left: 30% !important;
+    }
+
+    .green-btn{
+        width: 85% !important;
+        height: 30px;
+    }
+
+    .field {
+
+        width: 70% !important;
+        height: 30px !important;
+
+    }
+    .dialog1{
+height:85% !important ;
+width:85% !important;
+ 
+}
+    .pass {
+        width: 70% !important;
+        height: 30px !important;
+    }
+
+    .logo{
+        margin-top: 3%;
+        margin-left: 45%;
+    }
+
+    #SignForm{
+        background-color: rgba(0,0,0,0.5);
+        width: 80%;
+    }
+    #SignForm .ui-widget-content{
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+    div.third{
+        filter: alpha(opacity=30);
+        background-color: rgba(0,0,0,0.5);
+        margin-right:30%; 
+        margin-left:70%;
+        margin-top: 40%;
+        width:170px;  
+        height:120px; 
+
+
+    }
+    #fonthead{
+        font-size: 14px !important;
+        float: right;
+    }
+    .input1{
+        width: 80%;
+        height: 30px;
+        border-radius: 0px;
+        box-shadow: none;
+    }
+    .label1 {
+        color: white;
+        font-family: byekan;
+        font-weight: 100;
+        font-size: 30px;
+        text-align: right;
+        float: right;
+       
+
+    }
+    h4 {
+        font-family: byekan;
+        color: white;
+        opacity: 1;
+        font-size: 30px;
+    }
+    .inline-area {
+        display: inline;
+        font-family: byekan;
+        text-decoration: none;
+        color: whitesmoke;
+        font-size: 30px;
+    }
+
+
+    .errors {
+        color: red;
+        font-size: 12px;
+        font-family: byekan;
+       
+    }
+    .botton1{
+        background: #6aa434;
+        border: none !important;
+        border-radius: 0px;
+        font-family: byekan;
+        color: white;
+        box-shadow: none;
+        font-size: 16px; 
+        width: 40px;
+        height: 20px;
+        text-shadow: none;
+
+
+    }
+    #footerfont{
+        font-size:14px;
+        font-weight: 300; 
+        display:inline; 
+
+    }
+    .console{
+        display:inline;
+        color: white;
+        font-family: byekan;
+        font-weight: 100;
+        font-size:17px;
+        margin-right: 30px;
+    }
+    .console td{
+        padding-left: 10px;
+
+    }
+    .ui-grid-row{
+        border-top: 5px solid #6AA635;
+        position: fixed;
+        bottom: 0; 
+        width: 100%; 
+        height: 100px; 
+        background-color: #2B2D2A;
+        margin-left: 0;
+        left: 0px;
+        z-index: 10;
+    }  
+
+    .site-info{
+        background-color: rgba(0,0,0,0.5);
+        position: relative;
+        width:200px !important;  
+
+        left: 20px;
+        bottom: 80px;
+        direction: rtl;
+
+    }
+
+}
+
+
+.remember{
+    padding-top: 10px;
+}
+.field {
+    width: 50%;
+    border-radius: 0 !important;
+    font-weight: normal !important;
+    text-shadow: none !important;
+    box-shadow: none !important;
+    font-family: BYekan !important;
+    padding-right: 30px !important;
+    margin-left: 3px !important;
+    height: 20px;
+}
+
+.pass {
+    width: 50%;
+    border-radius: 0 !important;
+    font-weight: normal !important;
+    text-shadow: none !important;
+    box-shadow: none !important;
+    font-family: BYekan !important;
+    padding-right: 30px !important;
+    height: 20px;
+}
+
+.pass-icon:before {
+    position: relative;
+    right: 25px;
+    top: 5px;
+    font-family: 'FontAwesome';
+    content: "\f023";
+    font-size:23px;
+    color: #9A9A9A;
+}
+
+.user-icon:before {
+    position: relative;
+    right: 25px;
+    top: 5px;
+    font-family: 'FontAwesome';
+    content: "\f007";
+    font-size:23px;
+    color: #9A9A9A;
+}
+.green-btn{
+    background: -webkit-linear-gradient(top, #b4ddb4 0%,#83c783 17%,#52b152 33%,#008a00 67%,#005700 83%,#002400 100%) !important;
+    color: white !important;
+    width: 58%;
+    margin-right: 15px !important;
+}
+
+#aezaForm .ui-messages-error, .ui-message-error, .ui-message-error-icon, .ui-messages-error-icon, .ui-messages-error {
+    background-color: transparent !important;
+    border-color: transparent !important;
+    border: none !important;
+    color: #ff0000 !important;
+    font-family:BYekan !important;
+    font-size: 0.8em !important;
+    background: none !important;
+    padding: 0 !important; 
+
+}
+
+
+::-webkit-input-placeholder { /* WebKit browsers */
+    direction: rtl;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    direction: rtl;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ but I'm not sure about working */
+    direction: rtl;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    direction: rtl;
+}
+
+.ui-widget {
+    font-family: BYekan;
+    font-size: small;
+}
+
+input{
+    border-radius: 0px !important;
+    box-shadow: none !important;
+    font-family: "byekan";
+}
+button{
+    background: #CACACA !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 0px !important;
+    text-shadow: none !important;
+    box-shadow: none !important;
+    font-size: 12px;
+    font-family: "byekan" !important;
+}
+
+
+.green-btn:hover{
+    background: -webkit-linear-gradient(top, #b4ddb4 0%,#83c783 17%,#52b152 33%,#008a00 67%,#005700 83%,#002400 100%) !important;
+}
+.ui-radiobutton-box{
+    background: white !important;
+}
+
+#SignForm .ui-widget-content{
+    background: none;
+    border:none;
+}
+#SignForm p{
+    color: white;
+    font-family: "byekan" !important;
+}
+#SignForm .ui-tabs .ui-tabs-nav{
+    background: none;
+    border:none;
+}
+
+#SignForm .ui-widget-header .ui-state-default{
+    background: none;
+    border:none !important;
+    box-shadow: none !important;
+}
+#SignForm .ui-widget-header .ui-state-default>a{
+    color: gray;
+    text-shadow: none !important;
+    border:none !important;
+}
+#SignForm .ui-state-active>a{
+    color: white !important;
+}
+.site-info{
+    background-color: rgba(0,0,0,0.5);
+    position: relative;
+    width:250px;  
+    left: -8px;
+    bottom: 5px;
+    direction: rtl;
+    font-family: "byekan" !important;
+
+}
+.signInTitle:after {
+    position: absolute;
+    font-family: 'FontAwesome';
+    content: "\f090";
+    right: -5px;
+    top: 8px;
+    text-shadow: none;
+    color: white;
+    
+}
+
+.SingUpTitle:after {
+    position: absolute;
+    font-family: 'FontAwesome';
+    content: "/";
+    right: -5px;
+    top: 3px;
+    text-shadow: none;
+    color: white;
+    font-size: 20px;
+}

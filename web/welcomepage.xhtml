@@ -1,0 +1,204 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:pages="http://java.sun.com/jsf/composite/util/pages">
+    <h:head>
+        <title>صفحه ورود</title>
+        <h:outputStylesheet library="style" name="welcomepage.css" />
+        <style>
+            html { 
+                background: url(#{resource[backgroundImg.bgImages]})no-repeat center center fixed; 
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                background-size: cover;
+            }
+        </style>
+        <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    </h:head>
+    <h:body>
+        <div>
+            <h:graphicImage style="width: 133px;" styleClass="logo" library="images" name="loginpage/logo.png"/>
+        </div>
+
+        <div align="center" style="width: 100%">
+            <div id="SignForm">
+                <p:tabView activeIndex="#{signInBean.tabViewActiveIndex}" id="tab" dir="rtl" effect="fade">
+                    <p:tab title="ورود" titleStyleClass="signInTitle">
+
+                        <h:form id="aezaForm">
+                            <div dir="rtl" style="align-items: center; font-family: BYekan">
+                                <br/>
+                                <br/>
+                                <br/>
+                                <div class="user-icon">
+                                    <p:inputText immediate="true" id="username" required="false" styleClass="field" validatorMessage="ایمیل به درستی وارد نشده است" requiredMessage="ایمیل وارد نشده است" dir="ltr"  
+                                                 placeholder="نشانی ایمیل" value="#{signInBean.username}">
+                                        <f:validateRegex pattern="(?:[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+)*|&quot;(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*&quot;)@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])" />
+                                    </p:inputText>
+                                </div>
+                                <div style="margin: 0px 0px 5px 80px; height: 15px">
+                                    <p:message for="username" showSummary="true" showDetail="false" />
+                                </div>
+                                <div class="pass-icon">
+                                    <p:password immediate="true" id="pass" required="false" requiredMessage="رمز عبور وارد نشده است" 
+                                                dir="ltr" styleClass="pass" placeholder="رمز عبور" value="#{signInBean.password}"/>
+                                </div>
+                                <div style="margin: 0px 0px 5px 80px; height: 15px;">
+                                    <p:message for="pass" showSummary="true" showDetail="false" />
+                                    <p:messages globalOnly="true" showSummary="true" showDetail="false" />
+                                </div>
+
+                                <p:button styleClass="green-btn" value="ورود" outcome="#{signInBean.signUp()}"  />
+                                <div class="remember">
+                                    <h:selectBooleanCheckbox value="#{signInBean.remember}"/>&nbsp;
+                                    <span style="position: relative; bottom: 3px; left: 5px; color: white;"> مرا به خاطر بسپار</span>
+                                </div>
+                                <p>اطلاعات ورود را فراموش کردی؟ <a href="#" style="text-decoration: none ;color: #98ff66">بازیابی اطلاعات ورود</a></p>
+
+                                <p style="margin-top: 35px">برای استفاده از<a href="#" style="text-decoration: none; color: #98ff66">امکانات </a>ثبت نام نمایید</p>
+                            </div>
+                        </h:form>
+                    </p:tab>
+                    <p:tab title="عضویت" titleStyleClass="SingUpTitle">
+                        <h:form id="sosoform">
+                            <div  dir="rtl">
+                                <br/>
+                                <div>
+                                    <h4 id="fonthead">ثبت نام کسب و کار </h4>
+                                    <p:selectOneRadio  styleClass="console"  value="#{radioView.console}" >
+                                        <f:selectItem itemLabel="شخصی"  itemValue="person" />
+                                        <f:selectItem itemLabel="تجاری" itemValue="business" itemDisabled="true" />
+                                    </p:selectOneRadio>
+                                </div>
+                                <br/>
+                                <br/>
+                                <div class="container1">
+                                    <div class="ui-g" dir="rtl">
+                                        <div class="ui-g-6  ui-sm-12" align="right">
+                                            <p:outputLabel styleClass="label1" id="label1" value="نام"  />
+                                        </div>
+                                        <div class="ui-g-6 ui-sm-12"  align="right">
+                                            <p:inputText  styleClass="input1" binding="#{input1}" id="input1" required="true" requiredMessage="نام را وارد نمایید"  />
+                                            <br/><h:message for="input1" styleClass="errors" />
+                                        </div>
+                                    </div>
+                                    <div class="ui-g" dir="rtl">
+                                        <div class="ui-g-6  ui-sm-12" align="right" >
+                                            <p:outputLabel  styleClass="label1" id="label2" value="نام خانوادگی"  />
+                                        </div>
+                                        <div class="ui-g-6 ui-sm-12" align="right">
+                                            <p:inputText   styleClass="input1" binding="#{input2}" id="input2" required="true" requiredMessage="نام خانوادگی را وارد نمایید"  />
+                                            <br/><h:message for="input2" styleClass="errors" />
+                                        </div>
+                                    </div>
+                                    <div class="ui-g" dir="rtl">
+                                        <div class="ui-g-6  ui-sm-12" align="right">
+                                            <p:outputLabel  styleClass="label1" id="label3" value="نام مستعار"  />
+                                        </div>
+                                        <div class="ui-g-6 ui-sm-12" align="right">
+                                            <p:inputText   styleClass="input1" binding="#{input3}" id="input3" required="true" requiredMessage="نام مستعار خود را وارد نمایید"  /><br/><h:message for="input3" styleClass="errors" />
+
+                                        </div>
+                                    </div>
+                                    <div class="ui-g" dir="rtl">
+                                        <div class="ui-g-6  ui-sm-12" align="right">
+                                            <p:outputLabel  styleClass="label1" id="label4" value="پست الکترونیکی"  />
+                                        </div>
+                                        <div class="ui-g-6 ui-sm-12" align="right">
+                                            <p:inputText  styleClass="input1" binding="#{input4}" id="input4" required="true" validatorMessage=" فرمت پست الکترونیکی اشتباه است" requiredMessage="پست الکترونیکی خود را وارد نمایید" >
+                                                <f:validateRegex pattern="([^.@]+)(\.[^.@]+)*@([^.@]+\.)+([^.@]+)" />
+                                            </p:inputText> <br/>
+                                            <h:message for="input4" styleClass="errors" />
+                                        </div>
+                                    </div><br/>
+                                    <div class="ui-g" dir="rtl">
+                                        <div class="ui-g-6  ui-sm-12" align="right">
+                                            <p:outputLabel  styleClass="label1" id="label5"  value="رمز عبور"  />
+                                        </div>
+                                        <div class="ui-g-6 ui-sm-12" align="right">
+                                            <p:password styleClass="input1"  promptLabel="رمز عبور را وارد نمایید"    weakLabel="ضعیف"   goodLabel="متوسط"  strongLabel="قوی" dir="rtl" feedback="true" binding="#{input5}" id="input5" required="true" match="tab:sosoform:input6" validatorMessage="پسوردها یکسان نیستند"  requiredMessage="یک رمز عبور وارد نمایید"  /><br/><h:message for="input5" styleClass="errors" />
+                                        </div>
+                                    </div>
+                                    <div class="ui-g" dir="rtl">
+                                        <div class="ui-g-6  ui-sm-12" align="right" >
+                                            <p:outputLabel  styleClass="label1" id="label6" value="تکرار رمز عبور "  />
+                                        </div>
+                                        <div class="ui-g-6 ui-sm-12" align="right">
+                                            <p:password   styleClass="input1"  binding="#{input6}" id="input6" required="true" requiredMessage="تکرار رمزعبور را وارد نمایید"  /><br/><h:message for="input6" styleClass="errors" /><br/><br/>
+                                        </div>
+                                    </div>
+                                    <div class="ui-g" dir="rtl">
+                                        <div class="ui-g-6  ui-sm-12" align="right">
+                                            <p:outputLabel  styleClass="label1" id="label7" value="کد امنیتی"  />
+                                        </div>
+                                        <div class="ui-g-6 ui-sm-12" align="right"  >
+                                            <p:inputText  styleClass="input1" binding="#{input7}" id="input7" required="true" requiredMessage="کد امنیتی را وارد نمایید"  /><br/><h:message for="input7" styleClass="errors" /><br/>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <span style="color: red;position: relative;top:-8px;" class="fa fa-refresh"></span> 
+                                <p:graphicImage styleClass="captcha" library="images" name="loginpage/captcha.JPG"/><br/>
+                            </div>
+                            <p:selectBooleanCheckbox  styleClass="selectbt" value="#{selectBooleanView.value1}"/>
+                            <h6 id="footerfont" style="margin-right:1%; margin-top: 2%; color: white;">اینجانب کلیه   <p:commandLink onclick="PF('dlg2').show();" value="قوانین و مقررات" styleClass="termlink"></p:commandLink>  را می پذیرم</h6> <br/><br/>
+                            <p:commandButton value="ثبت نام کسب و کار" update="sosoform" styleClass="green-btn" action="#{signInBean.signUp()}" />
+                            <p:dialog header="قوانین و مقررات" widgetVar="dlg2" closeOnEscape="true"  modal="true" styleClass="dialog1" dir="rtl" height="500" width="500">
+                                <pages:terms/>
+                                </p:dialog>   
+                        </h:form>
+                    </p:tab>
+                </p:tabView>
+
+            </div>
+
+        </div>
+
+
+        <div class="site-info" >
+            <h5  style=" color: white;">کلیه سرویس ها و خدمات رایگان است <br/> ارتباط با مشتریان  <br/>   ارتباط با همکاران  <br/>   سفارش محصول   </h5>
+        </div>
+        <div class="footer">
+            <div class="container">
+
+                <div class="ui-g" dir="rtl">
+                    <div class="ui-g-12 ui-md-6 ui-lg-3" style="padding-top: 8px; " align="center">
+                        
+                    </div>
+
+                    <div  class="ui-g-12 ui-md-6 ui-lg-3" style="padding-top: 5px;" align="center">
+                        <h6 id="footerfont" style=" color: white; ">تمامی حقوق این سایت متعلق به سایت می باشد</h6> 
+                    </div>
+
+
+                    <div class="ui-g-12 ui-md-6 ui-lg-3" style="padding-top: 5px;" align="center">    
+                        <h6 id="footerfont" style="color: white; ">  <a href="#" style="text-decoration: none;color: whitesmoke">شرایط&nbsp;&nbsp;&nbsp;</a>| <a href="#" style="text-decoration: none; color: whitesmoke"> &nbsp;&nbsp;&nbsp;راهنمای کاربری&nbsp;&nbsp;&nbsp;</a> | <a href="#" style="text-decoration: none; color: whitesmoke" >&nbsp;&nbsp;&nbsp;درباره ما&nbsp;&nbsp;&nbsp;</a> </h6> 
+                    </div>
+
+                    <div class="ui-g-12 ui-md-6 ui-lg-3" style="padding-top: 5px ;" align="center"> 
+                        <div class="sociallink" id="footerspan" >
+                            <a>
+                                <span class="fa fa-rss" ></span>
+                            </a>
+                            <a>
+                                <span class="fa fa-fw fa-twitter" ></span>
+                            </a>
+                            <a>
+                                <span class="fa fa-fw fa-google-plus" ></span>
+                            </a>
+                            <a>
+                                <span class="fa fa-fw fa-facebook-official" ></span>
+                            </a> 
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </h:body>
+</html>

@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:product="http://java.sun.com/jsf/composite/util/product"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:head>
+        <title>محصولات</title>
+        <f:metadata>
+            <f:event type="preRenderView" listener="#{dCustomerProductDetailManagedBean.onLoad}" />
+        </f:metadata>   
+        <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />             
+        <h:outputStylesheet library="style" name="datagrid-products.css"/>
+
+        <link rel="shortcut icon" type="image/png" href="#{request.contextPath}/resources/images/favicon.png" />        
+    </h:head>
+    
+    <h:body>
+        <product:productInfoList id="productInfoListComposit" prependedId="productInfoListComposit" 
+                                addNewProductDialog="true"
+                                lstFillSelectItemsAttribute="null" 
+                                productCompositList="#{dCustomerProductDetailManagedBean.productCompositList}" 
+                                renderPanelEmptyAttribute="null"
+                                selectedProduct="#{dCustomerProductDetailManagedBean.selectedProduct}" />                            
+    </h:body>                       
+
+</html>
+

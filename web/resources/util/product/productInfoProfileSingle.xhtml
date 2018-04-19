@@ -1,0 +1,204 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://java.sun.com/jsf/composite"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <!-- INTERFACE -->
+    <cc:interface>
+        <cc:attribute name="productInfo" required="true"/>
+        <cc:attribute name="isMyProfile" required="true"/>
+        <cc:attribute name="prependedId" required="true" />
+        <cc:attribute name="removeAfterUnfollow" required="false" default="false" />
+        <cc:attribute name="wrapperId" required="false" />
+    </cc:interface>
+
+    <cc:implementation>
+
+        <p:outputPanel id="ProductItem" styleClass="ProductItem">
+            <div class="ProductItem">
+                <div class="ui-g" dir="rtl">
+                    <div class="side-r">
+                        <div align="center">
+                            <p:outputPanel rendered="true" styleClass="discount-side-l">
+                                <div class="discount-icon">
+                                    <p:outputLabel styleClass="discount-icon-text-discount" value="تخفیف"/>
+                                    <p:outputLabel styleClass="discount-icon-text-percent" value="%5"/>
+                                </div>
+                            </p:outputPanel>
+                            <div class="product-header">
+                                <p:outputPanel rendered="true" styleClass="discount-side-r">
+                                    <div align="left" class="discount-icon">
+                                        <p:outputLabel styleClass="discount-icon-text-discount" value="تخفیف"/>
+                                        <p:outputLabel styleClass="discount-icon-text-percent" value="%5"/>
+                                    </div>
+                                </p:outputPanel>
+
+                                <div class="brand">
+                                    <p:link href="#" style="text-decoration: underline" styleClass="brand-name" value="#{cc.attrs.productInfo.tProductInfo.brandName}"/>
+                                    <p:outputLabel styleClass="brand-text" value=" :برند"/>
+                                </div>
+                            </div>
+
+                            <p:commandLink style="clear: both;">
+                                <div class="center-cropped" style="clear: both;">
+                                    <p:graphicImage styleClass="product-img" value="#{cc.attrs.productInfo.firstImage.largeImage}" 
+                                                    style="max-width: 100%; vertical-align: middle" >
+                                    </p:graphicImage>
+                                    <div class="namojud"/>
+                                </div>
+                            </p:commandLink>                                
+                        </div>
+                        <div class="rating" dir="ltr">
+                            <span style="vertical-align: 6px;">
+                                #{cc.attrs.productInfo.tProductInfo.avgRank}
+                            </span>
+                            <p:rating value="#{cc.attrs.productInfo.tProductInfo.avgRank}" readonly="true" styleClass="product-rating" />                              
+                            <span style="vertical-align: 6px; font-weight: bold;">
+                                :امتیاز مصرف کنندگان
+                            </span>
+                        </div>
+
+                        <div class="colors">
+                            رنگ بندی: 
+                        </div>
+
+                        <div class="shoppingBasket-singleProduct">     
+                            <p:commandLink
+                                rendered="#{cc.attrs.productInfo.gettProductInfo().quantityAvailableProducts ne 0}"
+                                oncomplete="PF('widgetProductDetails').show();"  
+                                styleClass="productInfoProfile_AddToBasket">
+                                <img src="#{resource['icons/shoppingCart.png']}" class="shoppingCart-icon"/>
+
+                            </p:commandLink> 
+                            <span class="addBskt-singleProduct-txt">افزودن به سبد خرید</span>
+                        </div>
+
+                        <div align="center">
+
+                            <div class="multi-productName">
+                                <p:outputLabel value="#{cc.attrs.productInfo.tProductInfo.productName}" styleClass="ui-label-bold" />
+                            </div>  
+
+
+                            <div class="prices">
+                                <ui:remove>
+                                    <p:outputLabel value="#{cc.attrs.productInfo.quantity}"/>
+                                </ui:remove>    
+                                <div class="previous-priceLabel">
+                                    <p:outputLabel styleClass="previous-price-txt" value="قیمت قبل: " />
+                                    <p:outputLabel style="font-size: 12px" value="1,000,000">
+                                        <f:convertNumber pattern="###,###,###"  />
+                                    </p:outputLabel>
+                                    <p:outputLabel style="font-size: 12px" value=" تومان "/>                                    
+                                </div>
+
+                                <div class="priceLabel">
+                                    <p:outputLabel styleClass="price-txt" value="قیمت نهایی: " />
+                                    <p:outputLabel style="font-size: 15px" value="67,000,000">
+                                        <f:convertNumber pattern="###,###,###"/>
+                                    </p:outputLabel>
+                                    <p:outputLabel style="font-size: 15px" value=" تومان "/>                                    
+                                </div>
+                            </div>    
+
+                        </div> 
+                    </div>
+                    <div class="side-l" dir="rtl" align="right">
+                        <p:outputLabel styleClass="single-productName" value="#{cc.attrs.productInfo.tProductInfo.productName}"/> 
+
+                        <div class="product-details-labels" style="height: 150px;width: 750px">
+                            <p:outputLabel value="کد محصول: " styleClass="ui-label3"  /><br/>
+                            <p:outputLabel value="طبقه محصول: " styleClass="ui-label3"  /><br/>
+                            <p:outputLabel value="عنوان محصول: " styleClass="ui-label3"  /><br/>
+                            <p:outputLabel value="نام داخلی: " styleClass="ui-label3"  /><br/>
+                            <p:outputLabel value="نام برند: " styleClass="ui-label3"  /><br/>
+                            <p:outputLabel value="مدل: " styleClass="ui-label3"  /><br/>
+                            <p:outputLabel value="نوع و مدت گارانتی: " styleClass="ui-label3"  />
+                        </div>
+                        <div class="product-desc">
+                            <p:outputLabel value="#{cc.attrs.productInfo.tProductInfo.description}"/> 
+                        </div>
+                        <div class="social-statistics" align="center">
+                            <h:outputLink styleClass="heart" id="heartIcon-single" value="#" style="text-decoration: none;">
+                                <p:outputLabel value="#{cc.attrs.productInfo.perfectCount}" styleClass="numberLabel"/>
+                                <div class="#{cc.attrs.productInfo.isPerfeted ? 'fa fa-heart' :'fa fa-heart-o'}" style="font-size: 22px; color: #999999"/>
+                            </h:outputLink>
+                            <p:tooltip for="heartIcon-single" value="علاقه مندان"  style="width: 60px !important;"/>                                
+
+                            <p:link id="compare-single" href="#">
+                                <div class="compare"/>
+                                <p:tooltip for="compare-single" value="مقایسه" style="width: 60px !important;"/>  
+                            </p:link>  
+
+                            <h:outputLink styleClass="bell" id="bellIcon-single" value="#" style="text-decoration: none;">
+                                <div aria-hidden="true" class="fa fa-bell-o" style="font-size: 22px; color: #999999"/>
+                                <p:outputLabel value="#{cc.attrs.productInfo.followerCount}" styleClass="numberLabel"/>
+                            </h:outputLink>
+                            <p:tooltip for="bellIcon-single" value="دنبال کنندگان" style="width: 60px !important;"/>                                
+                        </div>
+                    </div>
+                </div> 
+                <style>
+                    #puppet#{cc.attrs.productInfo.gettProductInfo().id}:hover + .productInfoProfile_AddToBasket_Wrapper {
+                        border-top: 3px solid white !important;
+                    }
+                    #puppet#{cc.attrs.productInfo.gettProductInfo().id} {
+                        position: absolute !important;
+                        left: -9999px !important;
+                    }
+                </style>
+                <div class="shoppingBasket-multiProduct">
+                    <input id="puppet#{cc.attrs.productInfo.gettProductInfo().id}"/>
+                    <div align="center" 
+                         class="productInfoProfile_AddToBasket_Wrapper">  
+                        <div align="center" class="div-basket-inner-wrapper" >                           
+                            <p:commandLink
+                                rendered="#{cc.attrs.productInfo.gettProductInfo().quantityAvailableProducts ne 0}"
+                                oncomplete="PF('widgetProductDetails').show();"  
+                                styleClass="productInfoProfile_AddToBasket">
+                                <img src="#{resource['icons/shoppingCart.png']}" class="shoppingCart-icon"/>
+                                <span class="addToBasket-text-font-size">خرید محصول</span>
+                                <label class="puppet-label" for="puppet#{cc.attrs.productInfo.gettProductInfo().id}"/>
+                            </p:commandLink>                                                                        
+                            <p:outputPanel styleClass="productInfoProfile_AddToBasket_DoesNot_Exist"
+                                           rendered="#{cc.attrs.productInfo.gettProductInfo().quantityAvailableProducts eq 0}">
+                                <span class="productInfoProfile_Icon_Font_Size fa fa-times"/>
+                                <span class="productInfoProfile_AddToBasket_Text">
+                                    کالا موجود نیست
+                                </span>
+                            </p:outputPanel>  
+
+                        </div>  
+
+                        <div class="social-statistics" align="center">
+                            <h:outputLink styleClass="heart" id="heartIcon-multi" value="#" style="text-decoration: none;">
+                                <p:outputLabel value="#{cc.attrs.productInfo.perfectCount}" styleClass="numberLabel"/>
+                                <div class="#{cc.attrs.productInfo.isPerfeted ? 'fa fa-heart' :'fa fa-heart-o'}" style="font-size: 22px; color: #999999"/>
+                            </h:outputLink>
+                            <p:tooltip for="heartIcon-multi" value="علاقه مندان"  style="width: 60px !important;"/>                                
+
+
+                            <p:link id="compare-multi" href="#">
+                                <div class="compare"/>
+                                <p:tooltip for="compare-multi" value="مقایسه" style="width: 60px !important;"/>  
+                            </p:link>  
+
+
+                            <h:outputLink styleClass="bell" id="bellIcon-multi" value="#" style="text-decoration: none;">
+                                <div aria-hidden="true" class="fa fa-bell-o" style="font-size: 22px; color: #999999"/>
+                                <p:outputLabel value="#{cc.attrs.productInfo.followerCount}" styleClass="numberLabel"/>
+                            </h:outputLink>
+                            <p:tooltip for="bellIcon-multi" value="دنبال کنندگان" style="width: 60px !important;"/>                                
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </p:outputPanel>
+    </cc:implementation>
+</html>

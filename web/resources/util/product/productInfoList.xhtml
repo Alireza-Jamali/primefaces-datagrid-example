@@ -1,0 +1,176 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:cc="http://java.sun.com/jsf/composite"
+      xmlns:product="http://java.sun.com/jsf/composite/util/product">
+
+    <cc:interface>
+        <cc:attribute name="renderPanelEmptyAttribute" required="true" />
+        <cc:attribute name="lstFillSelectItemsAttribute" required="true"/>
+        <cc:attribute name="selectedProduct" required="true"/>
+        <cc:attribute name="productCompositList" required="true"/>
+        <cc:attribute name="prependedId" required="true" />        
+        <cc:attribute name="addNewProductDialog" required="true" default="false" />        
+    </cc:interface>
+
+    <cc:implementation>
+
+        <div align="center" style="background-color: transparent;width: 100%; ">           
+            <h:outputStylesheet library="style" name="productInfoProfile.css"/>
+
+
+            <div align="left" dir="rtl">
+                <p:commandLink onclick="showFourColumn()">
+                    <div class="fa fa-table" />
+                </p:commandLink>
+                <p:commandLink onclick="showOneColumn()">
+                    <div class="fa fa-navicon" />
+                </p:commandLink>                
+            </div>
+
+            <p:dataGrid id="productList" value="#{cc.attrs.productCompositList}" widgetVar="productListDataGrid" var="product" columns="1"  rows="12"  layout="grid"
+                        style="margin-right: -20px;background-color: #eeeeee !important;width: 100%;" emptyMessage="کالایی یافت نمی نشود." rowIndexVar="index" >
+                <p:dialog widgetVar="widgetProductDetails" id="dlgProductDetails" header="مشخصات کالا" modal="true" 
+                          style="background-color: #d9e2db" resizable="false" showEffect="clip" 
+                          hideEffect="clip" dir="rtl" styleClass="ui-label"
+                          rendered="#{cc.attrs.addNewProductDialog}">
+                    <p:outputPanel id="dlgProductDetails_outputpanel" autoUpdate="true">
+                        <p:panel id="attributeProduct" style="border: none !important;background-color:#d9e2db " >
+                            <div align="center">
+                                <p:scrollPanel id="scrollAtt" style="height: 350px;background-color: #d9e2db;border:none!important" mode="native"  >
+                                    <table width="350px">
+                                        <div align="center">
+                                            <p:outputLabel value="لطفا مشخصات کالای خود را انتخاب کنید" styleClass="ui-label" style="color: #2891a1; font-weight: bold !important" />
+                                        </div>
+                                        <br></br>
+                                        <tr>
+                                            <td colspan="3">
+                                                <p:separator  style="background: #96c3c5;border-color: #96c3c5 ;height: 0px;width: 350px;margin-top: 4px;z-index: 100"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3" align="center">
+
+                                                <p:outputLabel value="#{product.tProductInfo.description}" styleClass="ui-label" />
+
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </p:scrollPanel>
+                            </div>
+                        </p:panel>                                         
+                    </p:outputPanel> 
+                </p:dialog>
+                <product:productInfoProfileSingle
+                    id="productInfoProfile"
+                    productInfo="#{product}" 
+                    removeAfterUnfollow="true"
+                    wrapperId="#{cc.attrs.prependedId}:productList"
+                    isMyProfile="false"                                         
+                    prependedId="#{cc.attrs.prependedId}:productList:#{index}:productInfoProfile"/>                
+            </p:dataGrid>            
+
+            <p:blockUI block="productList" trigger="productList" >
+                <div align="center">
+                    <p:graphicImage name="../resources/images/logo.png" width="200"/>
+                    <br />
+                    <p:graphicImage name="../resources/images/megasearch/ajaxloadingbar.gif"/>
+                </div>
+            </p:blockUI>
+
+        </div>      
+        <script>
+
+            function showOneColumn() {
+                jQuery(".ui-datagrid-column").removeClass("ui-g-12");
+                jQuery(".ui-datagrid-column").removeClass("ui-lg-3");
+                jQuery(".ui-datagrid-column").removeClass("ui-md-6");
+                jQuery(".ui-datagrid-column").addClass("ui-grid-col-12");
+                jQuery(".ui-datagrid-column").removeClass("ui-grid-col-3");
+
+                jQuery(".ui-grid-row-four").addClass("ui-grid-row");
+                jQuery(".ui-grid-row-four").removeClass("ui-grid-row-four");
+
+                jQuery(".p-description").css("display", "block");
+                jQuery(".p-Attribute").css("display", "block");
+                jQuery(".main-product").addClass("mainInfo-product");
+                jQuery(".ex-product").addClass("extera-product");
+                localStorage.setItem("gridView", "one");
+                jQuery(".side-l").css("display", "block");
+
+                jQuery(".side-l").addClass("ui-g-9");
+                jQuery(".side-r").addClass("ui-g-3");
+                jQuery(".side-r").removeClass("ui-g-12");
+                jQuery(".discount-side-l").css("display", "block");
+                jQuery(".discount-side-r").css("display", "none");
+                jQuery(".productName").css("display", "none");
+                jQuery(".shoppingBasket-multiProduct").css("display", "none");
+                jQuery(".shoppingBasket-singleProduct").css("display", "block");
+                jQuery(".colors").css("display", "block");
+                jQuery(".previous-price-txt").css("display", "none");
+                jQuery(".price-txt").css("display", "inline");
+                jQuery(".multi-productName").css("display", "none");
+
+                $(window).bind("resize", function () {
+                    if ($(this).width() &lt; 800) {
+                        jQuery(".side-l").removeClass("ui-g-9");
+                        jQuery(".side-r").removeClass("ui-g-3");
+                        jQuery(".side-l").addClass("ui-g-6");
+                        jQuery(".side-r").addClass("ui-g-6");
+
+                    } else {
+                        jQuery(".side-l").addClass("ui-g-9");
+                        jQuery(".side-r").addClass("ui-g-3");
+                        jQuery(".side-l").removeClass("ui-g-6");
+                        jQuery(".side-r").removeClass("ui-g-6");
+                    }
+                });
+
+            }
+            function showFourColumn() {
+                jQuery(".ui-datagrid-column").addClass("ui-g-12");
+                jQuery(".ui-datagrid-column").addClass("ui-lg-3");
+                jQuery(".ui-datagrid-column").addClass("ui-md-6");
+                jQuery(".main-product").removeClass("mainInfo-product");
+                jQuery(".ex-product").removeClass("extera-product");
+                jQuery(".ui-datagrid-column").addClass("ui-grid-col-3");
+                jQuery(".ui-datagrid-column").removeClass("ui-grid-col-12");
+                jQuery(".ui-grid-row").addClass("ui-grid-row-four");
+                jQuery(".ui-grid-row").removeClass("ui-grid-row");
+                jQuery(".p-description").css("display", "none");
+                jQuery(".p-Attribute").css("display", "none");
+                localStorage.setItem("gridView", "four");
+                jQuery(".side-l").css("display", "none");
+                jQuery(".discount-side-l").css("display", "none");
+                jQuery(".discount-side-r").css("display", "block");
+                jQuery(".productName").css("display", "block");
+                jQuery(".side-l").removeClass("ui-g-9");
+                jQuery(".side-r").removeClass("ui-g-3");
+                jQuery(".side-r").addClass("ui-g-12");
+                jQuery(".shoppingBasket-multiProduct").css("display", "block");
+                jQuery(".shoppingBasket-singleProduct").css("display", "none");
+                jQuery(".colors").css("display", "none");
+                jQuery(".previous-price-txt").css("display", "inline");
+                jQuery(".price-txt").css("display", "none");
+                jQuery(".multi-productName").css("display", "inline-block");
+            }
+
+            function checkGridView() {
+                var viewMode = localStorage.getItem("gridView");
+                if (viewMode === "" || viewMode === null) {
+                    viewMode = "four";
+                }
+                if (viewMode === "one") {
+                    showOneColumn();
+                } else if (viewMode === "four") {
+                    showFourColumn();
+                }
+            }
+            jQuery(document).ready(function () {
+                checkGridView();
+            });
+        </script>
+    </cc:implementation>
+</html>
